@@ -5,13 +5,14 @@
 	</head>
 		<body onload="load()">
 	<body>
-		<button type="button" onclick="cookieClick(1)">CLICK ME</button> <!--creates button-->
-		<span style="color:blue;font-weight:bold" id="cookies">0</span> <br /><!--last bit is /n-->
-		<button type="button" onclick="buyCursor()">Buy a Cursor?</button>
-		Cursors: <span id="cursors">0</span>, 
-		Cost: <span id="cursorCost">10</span> <br /> <br /> <br />
+		<button type="button" onclick="cookieClick(25)">CLICK ME</button> <!--creates button-->
+		<span style="color:blue;font-weight:bold" id="gald">0</span>g <br /> <br /><!--last bit is /n-->
+		INVESTMENTS: <br />
+		<button type="button" onclick="buyObject('homeless')">Beggars, Mendicants, and Vagabonds</button>
+		Lvl: <span id='homeless'>0</span>, 
+		Cost: <span id="homelessCost">10</span>g <br /> <br /> <br />
 		<button type="button" onclick="erase()">Delete Sys32.exe</button><!--Button allows player to delete their save-->
 		<script type="text/javascript" src="main.js"></script> <!--link JS-->
-			<script>window.onload = function "load()"</script>
+		<script>window.onload = load()</script>
 	</body>
 </html>
