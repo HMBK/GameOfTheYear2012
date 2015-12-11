@@ -1,0 +1,17 @@
+<html>
+<!--The purpose of linking the Stylesheet and the JS files is so that upon opening this HTML file in a browser, the code that I've added to the game (essentially the meat and potatoes) are pulled from and run simultaneously. Think like... Calling a class or object into your main function, where this is main()-->
+	<head>
+		<link rel="stylesheet" type="text/css" href="interface.css" /> <!--link stylesheet-->
+
+	</head>
+
+	<body>
+		<button type="button" onclick="cookieClick(1)">"CLICK ME"</button> <!--creates button-->
+		<span style="color:blue;font-weight:bold" id="cookies">0</span> <br /><!--last bit is /n-->
+		<button type="button" onclick="buyCursor()">"Buy a Cursor?</button>
+		Cursors: <span id="cursors">0</span>, 
+		Cost: <span id="cursorCost">10</span>
+		<script type="text/javascript" src="main.js"></script> <!--link JS-->
+	</body>
+
+</html>
