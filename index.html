@@ -4,36 +4,79 @@
 
 <html>
 
-<!-- Linking JQuery -->
-<script type="text/javascript" src="jquery-1.11.3.js"></script>
-<!-- Latest compiled and minified CSS #bootstrapLyfe-->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
 <head>
-	<link rel="stylesheet" type="text/css" href="interface.css" /> <!--link stylesheet-->
+		<!-- Linking JQuery -->
+	<script type="text/javascript" src="lib/jquery-1.11.3.js"></script>
+	<script type="text/javascript" src="resources/script/main.js"></script> <!--link JS-->
+	<!-- Latest compiled and minified CSS #bootstrapLyfe-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="resources/css/interface.css" /> <!--link stylesheet-->
 </head>
 <body onload="load()">
 	<body>
-		<h1>Personal Coffers: <span style="color:#DFB51C;font-weight:bold" id="gald">0</span>g </h1> <hr> <br /> <!--h1 super large, hr causes page break-->
 
-		<div class="btn btn-success btn-lg" id="scrounge">Scrounge Up Some Loose Gald</div> <!--Bootstrap Gald Clicker-->
+<!--dude's header idea-->
+		<div class="row header">
+			<div class="col-md-12">
+				<h1>Dan's Game<small> v0.004<img src="resources/img/DansGame.jpg" style="width:25px;height:32px;"></small></h1>
+			</div>
+		</div>
+<!--End header idea-->
 
-		<!--<button type="button" onclick="cookieClick(25)">CLICK ME</button> creates button-->
-		<br /> <br /><!--<br /> is /n-->
-		<h2>INVESTMENTS: </h2><br />
-		<button type="button" onclick="buyObject('homeless')">Beggars, Mendicants, and Vagabonds</button>
-		Lvl: <span id='homeless'>0</span>, 
-		Cost: <span id="homelessCost">10</span>g <br /> <br /> <br />
-		<!--<button type="button" onclick="erase()">Delete Sys32.exe</button>   Button allows player to delete their save-->
-		<!--<div class="btn btn-danger btn-lg" id="erase">Delete Sys32.exe</div> -->
 
+<!--<h1>Personal Coffers: <span style="color:#DFB51C;font-weight:bold" id="gald">0</span>g </h1> <hr> <br /> --> <!--h1 super large, hr causes page break-->
+
+<!--ESTABLISHING TABS-->
+		<ul class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab" href="#home">Wealth</a></li>
+			<li><a data-toggle="tab" href="#menu1">Tenure</a></li>
+			<li><a data-toggle="tab" href="#menu2">Combat</a></li>
+		</ul>
+<!--END ESTABLISHING TABS-->
+
+<!--FIRST TAB BEGINS HERE-->
+		<div class="tab-content">
+			<div id="home" class="tab-pane fade in active">
+				<div class="row header">
+				<h3>Shareholding</h3>
+				<p><i>"Everybody has to display a certain loyalty to their paycheck. I was the same way. It isn't just a piece of paper, but a chain that binds people."</i></p>
+				</div>
+				<h1>Personal Coffers: <span style="color:#DFB51C;font-weight:bold" id="gald">0</span>g </h1> <hr> <br />
+				<div class="btn btn-success btn-lg" id="scrounge">Scrounge Up Some Loose Gald</div> <!--Bootstrap Gald Clicker-->
+				<!--<button type="button" onclick="cookieClick(25)">CLICK ME</button> creates button-->
+				<br /> <br /><!--<br /> is /n-->
+				<h2>INVESTMENTS: </h2><br />
+				<button type="button" onclick="buyObject('homeless')">Beggars, Mendicants, and Vagabonds</button>
+				Lvl: <span id='homeless'>0</span>, 
+				Cost: <span id="homelessCost">10</span>g <br /> <br /> <br />
+				<!--<button type="button" onclick="erase()">Delete Sys32.exe</button>   Button allows player to delete their save-->
+				<!--<div class="btn btn-danger btn-lg" id="erase">Delete Sys32.exe</div> -->
+			</div>
+<!--FIRST TAB ENDS HERE-->
+
+			<div id="menu1" class="tab-pane fade">
+				<div class="row header">
+				<h3>Supersedure</h3>
+				<p><i>"Dictatorship itself isn't absolutely evil, it's just another form of government. The point is how you can run it for the benefit of society."</i></p>
+				</div>
+			</div>
+
+			<div id="menu2" class="tab-pane fade">
+				<div class="row header">
+				<h3>Subversion</h3>
+				<p><i>"All heroes have established their thrones atop not just their enemies, but a large quantity of allied corpses as well. There are no monarchs with clean hands."</i></p>
+				</div>
+			</div>
+		</div>
 
 <!--Literally ALL THE DELETE BUTTON-->
+	<div id="footer">
 		<div class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete">
 			Delete Save
 		</div>
+	</div>
 		<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -51,9 +94,7 @@
 			</div>
 		</div>
 <!--ALL OF THAT ^^^^-->
+	<script>window.onload = load()</script>
 
-
-		<script type="text/javascript" src="main.js"></script> <!--link JS-->
-		<script>window.onload = load()</script>
 	</body>
 	</html>

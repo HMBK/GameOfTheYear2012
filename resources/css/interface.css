@@ -1,0 +1,11 @@
+.header {
+  text-align:center;
+}
+
+#footer {
+	text-align:right;
+   position:absolute;
+   bottom:0;
+   width:98%;
+   height:60px;
+}
