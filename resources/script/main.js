@@ -20,11 +20,10 @@ function cookieClick(number)//REPLACE THIS WITH FUNCTION THAT ADDS BASED ON ANOT
 	document.getElementById("gald").innerHTML = gald; //when the HTML file calls for gald, it'll return value of gald var
 };
 
-// Increase numWidgets every time produce-widget is clicked
+// Increase gald every time produce-widget is clicked
 $(document).on('click', '#scrounge', function () {
-    gald += 100;
-    console.log("yup");
-    refresh();
+	gald += Math.floor((Math.random() * 30) + 5);; //remember *upper+lower bounds
+	refresh();
 });
 
 function buyObject(object) //new cost = base cost(1.1^n) where n=num of object
@@ -35,12 +34,12 @@ function buyObject(object) //new cost = base cost(1.1^n) where n=num of object
 		{
 			if(gald >= inv[i][3]) //[3]=curCost, if can player afford object
 			{
-			inv[i][1] = inv[i][1]+1; //[1]=#of, object++
-			gald = gald - inv[i][3]; //gald-curCost
-			document.getElementById(inv[i][0]).innerHTML = inv[i][1]; //updates #of for user
-			document.getElementById('gald').innerHTML = gald; //same as above but for gald
-			inv[i][3] = Math.floor(inv[i][2] * Math.pow(1.1,inv[i][1])); //computes cost of next object
-			document.getElementById(inv[i][0]+'Cost').innerHTML = inv[i][3]; //updates object cost for user
+				inv[i][1] = inv[i][1]+1; //[1]=#of, object++
+				gald = gald - inv[i][3]; //gald-curCost
+				document.getElementById(inv[i][0]).innerHTML = inv[i][1]; //updates #of for user
+				document.getElementById('gald').innerHTML = gald; //same as above but for gald
+				inv[i][3] = Math.floor(inv[i][2] * Math.pow(1.1,inv[i][1])); //computes cost of next object
+				document.getElementById(inv[i][0]+'Cost').innerHTML = inv[i][3]; //updates object cost for user
 			}
 		}
 	};
@@ -72,12 +71,12 @@ function load()
 //Erase save function
 function erase()
 {
-		localStorage.removeItem("save");
-		gald=0;
-		inv[0]=["homeless",0,100,100];//make this a for loop too; inv[i] at 0 & 2 can stay the same, 1=0 and 3=2
+	localStorage.removeItem("save");
+	gald=0;
+		inv[0]=["homeless",0,100,100];//make this a for loop too; inv[i] at 0 & 2 can stay the same, 1="0" and 3=2
 		refresh();
-	console.log("Erased!");
-	return;
+		console.log("Erased!");
+		return;
 }
 
 //Function to prettify numbers & rogue decimals
@@ -90,19 +89,28 @@ function clean(input)
 //THE GAME LOOP
 window.setInterval(function()
 {
-save();//Autosaves every fire
-for(var i = 0; i<Object.keys(inv).length; i++)
-{
-	cookieClick(clean(inv[i][1]/2)*1); //clicks for # of i /2 (twice a second) * 1 (currently 1 per unit; change this)
-}
+	for(var i = 0; i<Object.keys(inv).length; i++)
+	{
+		cookieClick(clean(inv[i][1]/2)*1); //clicks for # of i /2 (twice a second) * 1 (currently 1 per unit; change this)
+	}
 }, 500); //The above fires once every 1000ms
+
+//THE SAVE LOOP
+window.setInterval(function()
+{
+	save(); 
+	console.log("Saved.");
+}, 30000); //The above fires once every 1000ms
 
 //Refreshes displayed values in the HTML file
 function refresh()
 {
 	document.getElementById('gald').innerHTML = gald;
-	document.getElementById(inv[0][0]).innerHTML = inv[0][1];//NOTE replace this with a for : each once more things are in
-	document.getElementById(inv[0][0]+'Cost').innerHTML = inv[0][3];
+	for(var i=0; i<inv.length; i++)
+	{
+		document.getElementById(inv[i][0]).innerHTML = inv[i][1];
+		document.getElementById(inv[i][0]+'Cost').innerHTML = inv[i][3];
+	}
 	console.log("Refreshed!");
 }
 
