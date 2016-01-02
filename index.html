@@ -21,7 +21,7 @@
 <!-- Start of header -->
 		<div class="row header">
 			<div class="col-md-12">
-				<h1 style="color:#1F0134;">Dan's Game<br /><small style="color:#1F0134;"> v0.020<br /><img src="resources/img/DansGame.jpg" style="width:25px;height:32px;"></small></h1>
+				<h1 style="color:#1F0134;">Dan's Game<br /><small style="color:#1F0134;"> v0.0275<br /><img src="resources/img/DansGame.jpg" style="width:25px;height:32px;"></small></h1>
 			</div>
 		</div>
 <!-- End of header -->
@@ -30,11 +30,11 @@
 		<ul class="nav nav-tabs" id="gameTabs">
 			<li class="active"><a data-toggle="tab" href="#home" style="background-color:DCFEE8;">Wealth</a></li>
 			<li><a data-toggle="tab" href="#menu1" style="background-color:E4F4FF;">Tenure</a></li>
-			<li><a data-toggle="tab" href="#menu2" style="background-color:FFEBEB;">Combat</a></li><!---->
+			<li><a data-toggle="tab" href="#menu2" style="background-color:FFEBEB;">Combat</a></li>
 		</ul>
 <!-- END ESTABLISHING TABS -->
 
-<!--FIRST TAB BEGINS HERE-->
+<!-- First Tab -->
 		<div class="tab-content">
 			<div id="home" class="tab-pane fade in active" style="background-color:DCFEE8; height:100%;">
 				<div class="row header">
@@ -53,8 +53,7 @@
 							Cost: <span id="homelessCost">10</span>g <br /> <br /> <br />
 							<button type="button" onclick="buyObject('homeless')">Beggars, Mendicants, and Vagabonds</button>
 						</div> </div>
-						<div class="col-sm-4">
-							<button type="button" onclick="buyObject('homeless')">Beggars, Mendicants, and Vagabonds</button>
+						<div class="col-sm-4" id="newButton">
 						</div>
 						<div class="col-sm-4">
 							<button type="button" onclick="buyObject('homeless')">Beggars, Mendicants, and Vagabonds</button>
@@ -70,23 +69,49 @@
 				<div class="row header">
 					<h3>Supersedure</h3>
 					<p><i>"Dictatorship itself isn't absolutely evil; it's just another form of government. The point is how you can run it for the benefit of society."</i></p>
+					<h1>Resource Management</h1>
 				</div>
 
-				<div class="container">
-					<h1>Hello World!</h1>
-					<p>Resize the browser window to see the effect.</p>      
+				<div class="container"> 
 					<div class="row">
-						<div class="col-sm-4" style="background-color:lavender;">
-							<div class="btn btn-success btn-lg" id="scrounge">Scrounge Up Some Loose Gald</div> <br /> <br />
-							<div class="btn btn-success btn-lg" id="scrounge">Scrounge Up Some Loose Gald</div> <br /> <br />
-							<button type="button" onclick="buyObject('homeless')">Beggars, Mendicants, and Vagabonds</button>
-						</div>
+
 						<div class="col-sm-4">
-							<button type="button" onclick="buyObject('homeless')">Beggars, Mendicants, and Vagabonds</button>
+							<div class="well"><h2 align="center">Wood</h2>
+								    <p align="center"><span id="wood">0</span></p>
+								<div class="progress">
+								  <div class="progress-bar" role="progressbar" id="woodBar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 2%;">
+								  </div>
+								</div>
+
+								<div class="btn btn-primary btn-lg btn-block" id="woodCollectBtn" onclick="setGather('wood')">Chop</div>
+							</div>
 						</div>
+
 						<div class="col-sm-4">
-							<button type="button" onclick="buyObject('homeless')">Beggars, Mendicants, and Vagabonds</button>
+							<div class="well"><h2 align="center">Stone</h2>
+								 <p align="center"><span class="resource-time"id="stone">0</span></p> 
+								<div class="progress">
+								  <!--<span class="progress-value resource-time" id="stone">0</span>-->
+								  <div class="progress-bar" role="progressbar" id="stoneBar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 2%; background-color: purple;">
+								  </div>
+								</div>
+
+								<div class="btn btn-primary btn-lg btn-block" id="stoneCollectBtn" onclick="setGather('stone')">Mine</div>
+							</div>
 						</div>
+
+						<div class="col-sm-4">
+							<div class="well"><h2 align="center">Flax</h2>
+								<p align="center"><span id="flax">0</span></p>
+								<div class="progress">
+								  <div class="progress-bar" role="progressbar" id="flaxBar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 2%;">
+								  </div>
+								</div>
+
+								<div class="btn btn-primary btn-lg btn-block" id="flaxCollectBtn" onclick="setGather('flax')">Gather</div>
+							</div>
+						</div>
+
 					</div>
 				</div>
 					<div class="container">
@@ -95,7 +120,7 @@
 			</div>
 <!-- Second Tab End -->
 
-<!-- Third tab! -->
+<!-- Third Tab -->
 			<div id="menu2" class="tab-pane fade" style="background-color:FFEBEB; height:100%;">
 
 				<div class="row header">
@@ -103,14 +128,38 @@
 					<p><i>"All heroes have established their thrones atop not just their enemies, but a large quantity of allied corpses as well. There are no monarchs with clean hands."</i></p>
 				</div>
 
+<!-- Messing around with the dungeon button idea -->
+			<div class="btn btn-warning btn-lg btn-block" data-toggle="modal" data-target="#dungeon-run">Enter the Dungeon</div>
+<!-- End of that terrible experiment -->
+<!-- Combat tab mockup, nothing functioning right now -->
+				<div class="container"> 
+					<div class="row">
+
+						<div class="col-sm-6">
+							<h1>Your Base Stats:</h1>
+							<h3>HIT: 100<i>(+5/LVL)</i></h3>
+							<h3>ATK: 1</h3><i>(+1/LVL)</i>
+							<h3>DEF: 1</h3><i>(+1/LVL)</i>
+							<h3>REC: 1</h3><i>(+1/LVL)</i>
+						</div>
+
+						<div class="col-sm-6">
+							<h1>Unlocked Abilities:</h1>
+							<h3><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> - ...and Heart!</h3><i>+5 HIT/LVL</i> <br />
+							<h3><span class="glyphicon glyphicon-road" aria-hidden="true"></span> - The Road Less Traveled</h3><i>Higher Risk/Reward!</i>
+						</div>
+
+					</div>
+				</div>
 			</div>
 		</div>
-<!-- End of third tab -->
+<!-- Third Tab End -->
 
 <!--Literally ALL THE DELETE BUTTON-->
 		<div id="footer">
 			<div class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete">Delete Save</div>
 		</div>
+
 		<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -124,7 +173,20 @@
 			</div>
 		</div>
 <!--ALL OF THAT ^^^^-->
-		<script>window.onload = load()</script>
+<!-- and also the dungeon modal? -->
+		<div class="modal fade" id="dungeon-run" tabindex="-1" role="dialog" aria-labelledby="combatModal" aria-hidden="true" data-backdrop="static" data-keyboard="false"> <!--last two bits prevent closing the window on click off or hitting escape -->
+			<div class="modal-dialog"style="width: 80%;">
+				<div class="modal-content">
+					<div class="modal-header" align="center"><h1>Thy Dungeonman</h1></div>
+					<div class="modal-body" style="height: 65%;">You can quit the current run by clicking "Bail"; hitting escape or clicking off the window shouldn't interrupt your run.</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger"data-dismiss="modal">Bail</button>
+					</div>
+				</div>
+			</div>
+		</div>
+<!-- that up there -->
+		<script>window.onload = load()</script> <!-- runs the load function from JS after the page has been established -->
 
 	</body>
 </html>

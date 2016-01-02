@@ -9,3 +9,27 @@
    width:98%;
    height:60px;
 }
+
+.progress-bar-purple {
+      background-color: purple !important;
+}
+
+.progress {
+    text-align:center;
+    width:100%;
+    margin:15px auto;
+}
+.progress-value {
+    position:absolute;
+    right:0;
+    left:0;
+}
+
+.resource-time {
+	color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+#combatModal.modal-dialog  {
+	width:75%;
+}
