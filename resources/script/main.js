@@ -43,7 +43,7 @@ function newGame(){
 				amount: 0,
 				maxAmount: 100
 			},
-			fibers: {
+			flax: {
 				name: "flax",
 				amount: 0,
 				maxAmount: 100
@@ -72,6 +72,7 @@ function setGather(resource)
 	console.log(btn);
 	$('#'+btn).addClass('disabled');
 	playerIsHarvesting = resource;
+	refresh();
 }
 
 function tick()
@@ -159,21 +160,9 @@ window.setInterval(function()
 {
 	for(key in game.resources)
 		if(game.resources[key].name == playerIsHarvesting)
-		{
-			var htmlBarName = "#" + playerIsHarvesting + "Bar";// sets as "#woodBar"
 			if(game.resources[key].amount < game.resources[key].maxAmount)
-			{
-				var remainder = (game.resources[key].maxAmount - game.resources[key].amount);
 				game.resources[key].amount++; //where num is increase value, maybe change it?
-				document.getElementById(game.resources[key].name).innerHTML = game.resources[key].amount;// updates value of sent resource in the HTML file client side
-				$(htmlBarName)
-				.css("width", (game.resources[key].amount*100)/(game.resources[key].maxAmount) + "%") //note this is assuming it's always going to be out of 100
-				.attr("aria-valuenow", game.resources[key].amount)
-				//.text(Math.floor(remainder/60) + "min " + remainder%60 + "sec");
-				//$("#" + playerIsHarvesting + "TimeLeft") = (Math.floor(remainder/60) + "min " + remainder%60 + "sec");
-				refresh();
-			}
-		}
+	refresh();
 }, 1000);
 
 
@@ -190,6 +179,27 @@ function refresh()
 	{
 		document.getElementById(key).innerHTML = game.buildings[key].numOf;
 		document.getElementById(key+'Cost').innerHTML = game.buildings[key].currentCost;
+	}
+	for(var key in game.resources)
+	{
+		document.getElementById(game.resources[key].name).innerHTML = game.resources[key].amount;// updates value of sent resource in the HTML file client side
+		var htmlBarName = "#" + key + "Bar";// ie, sets as "#woodBar"
+		$(htmlBarName) //sets the values of whichever resource bar is updating in the HTML
+		.css("width", (game.resources[key].amount*100)/(game.resources[key].maxAmount) + "%") //note this is assuming it's always going to be out of 100
+		.attr("aria-valuenow", game.resources[key].amount)
+
+		var timeSpan = game.resources[key].name + "Time"; //finds the resource's <span> value in the HTML
+		var remainder = (game.resources[key].maxAmount - game.resources[key].amount); //value til the resource is full
+		if(game.resources[key].name == playerIsHarvesting) //if the resource is the one being harvested...
+		{
+			if(remainder > 0) //...and it isn't full...
+				document.getElementById(timeSpan).innerHTML = (Math.floor(remainder/60) + "min " + remainder%60 + "sec");//...display the time til it is
+			else
+				document.getElementById(timeSpan).innerHTML = "Full!"; //elsewise, tell us it's already full.
+		}
+		else
+			document.getElementById(timeSpan).innerHTML = ""; //and if it isn't being harvested, don't write down a time at all.
+
 	}
 	console.log("Refreshed!");
 }
@@ -220,4 +230,5 @@ v0.010 - buildings have values! dynamic tick! double support! default values! sa
 v0.020 - completely redid inventory and -all- associated functions; changed from dynamic array to Object of Objects
 v0.025 - would you believe I did it again? Changed inventory to game, and reworked save and load functions a la Trimps
 v0.0275 - figured out colouring bootstrap bars, plus centering bar text. Added mockup combat page, <i>very</i> rough concept right now.
+v0.03 - outlined & centered text timers on the currently harvested resource! Improved combat page mockup.
 */
